@@ -1,14 +1,16 @@
 // all the npm packages that need to require
+require('dotenv').config()
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
 
+
 // connecting to database
 const connection = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'employee_db'
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
 connection.connect(function(err) {
@@ -56,7 +58,7 @@ const promptUser = () => {
     })
     .catch((error) => {
         if (error.isTtyError) {
-          console.log("Prompt couldn't be rendered in the current environment")
+            console.log("Prompt couldn't be rendered in the current environment")
         } else {
             console.log("Something else went wrong")
         }
