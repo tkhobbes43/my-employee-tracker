@@ -37,7 +37,7 @@ const promptUser = () => {
             type: 'list',
             name: 'choices',
             message: 'What would you like to do?',
-            choices: ['View all departments',
+            choices: ['View all departments', 
                     'View all roles',
                     'View all employees',
                     'Add a department',
@@ -54,7 +54,51 @@ const promptUser = () => {
         }
     ])
     .then((answers) => {
-
+        // destructuring choices from answers object of the thenify for inquirer, so that I can run conditionals with call back functions for each option user has made
+        // user has
+        const { choices } = answers
+        if (choices === "View all departments") {
+            viewDepartments();
+        }
+        if (choices === "View all roles") {
+            viewRoles();
+        }
+        if (choices === "View all employees") {
+            viewAllEmployees();
+        }
+        if (choices === "Add a role") {
+            addRole();
+        }
+        if (choices === "Add an employee") {
+            addEmployee();
+        }
+        if (choices === "Update an employee") {
+            updateEmployee();
+        }
+        if (choices === "Update employee managers") {
+            updateManager();
+        }
+        if (choices === "View employees by manager") {
+            employeeManager();
+        }
+        if (choices === "View employees by department") {
+            employeeDepartment();
+        }
+        if (choices === "Delete a department") {
+            deleteDepartment();
+        }
+        if (choices === "Delete a role") {
+            deleteRole();
+        }
+        if (choices === "Delete an employee") {
+            deleteEmployee();
+        }   
+        if (choices === "View the total utilized budget of a department") {
+            totalDepartmentBudget();
+        }
+        if (choices === "No Action") {
+            connection.end()
+        };
     })
     .catch((error) => {
         if (error.isTtyError) {
