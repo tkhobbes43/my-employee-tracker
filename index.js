@@ -50,7 +50,9 @@ const promptUser = () => {
                     'Delete a department',
                     'Delete a role',
                     'Delete an employee',
-                    'View the total utilized budget of a department']
+                    'View the total utilized budget of a department',
+                    'No Action',
+                ]
         }
     ])
     .then((answers) => {
