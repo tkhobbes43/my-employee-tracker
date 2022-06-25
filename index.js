@@ -108,3 +108,19 @@ const promptUser = () => {
         }
     });
 }
+
+function viewDepartments() {
+    const sqlStr = `
+    SELECT *
+    FROM department`
+
+    connection.query(sqlStr, (err, data) => {
+        if(err) throw err;
+
+        console.log('\n')
+        console.table(data)
+        console.log('\n')
+
+        promptUser()
+    })
+}
