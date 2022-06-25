@@ -111,7 +111,7 @@ const promptUser = () => {
     });
 }
 
-function viewDepartments() {
+viewDepartments() => {
     const sqlStr = `
     SELECT *
     FROM department`
@@ -127,7 +127,7 @@ function viewDepartments() {
     })
 }
 
-function viewRoles() {
+viewRoles() => {
     const sqlStr = `
     SELECT *
     FROM role`
@@ -141,4 +141,8 @@ function viewRoles() {
 
         promptUser()
     })
+}
+
+viewAllEmployees() => {
+    
 }
