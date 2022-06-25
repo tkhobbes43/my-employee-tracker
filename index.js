@@ -54,8 +54,8 @@ const promptUser = () => {
         }
     ])
     .then((answers) => {
-        // destructuring choices from answers object of the thenify for inquirer, so that I can run conditionals with call back functions for each option user has made
-        // user has
+        // destructuring choices from answers object of the thenify for inquirer, so that I can run
+        // conditionals with call back functions for each option user has made
         const { choices } = answers
         if (choices === "View all departments") {
             viewDepartments();
@@ -113,6 +113,22 @@ function viewDepartments() {
     const sqlStr = `
     SELECT *
     FROM department`
+
+    connection.query(sqlStr, (err, data) => {
+        if(err) throw err;
+
+        console.log('\n')
+        console.table(data)
+        console.log('\n')
+
+        promptUser()
+    })
+}
+
+function viewRoles() {
+    const sqlStr = `
+    SELECT *
+    FROM role`
 
     connection.query(sqlStr, (err, data) => {
         if(err) throw err;
