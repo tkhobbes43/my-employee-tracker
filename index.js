@@ -112,22 +112,24 @@ const promptUser = () => {
 }
 
 viewDepartments = () => {
+    // template literal used to show department table
     const sqlStr = `
     SELECT *
     FROM department`
-
+    
     connection.query(sqlStr, (err, data) => {
         if(err) throw err;
 
         console.log('\n')
         console.table(data)
         console.log('\n')
-
+        // brings user back to original inquirer prompt
         promptUser();
     })
 };
 
 viewRoles = () => {
+    // very similar code as viewDepartments
     const sqlStr = `
     SELECT *
     FROM role`
@@ -144,6 +146,7 @@ viewRoles = () => {
 };
 
 viewAllEmployees = () => {
+    // very similar code as viewDepartments and viewRoles
     const sqlStr = `
     SELECT *
     FROM employee`
