@@ -22,5 +22,5 @@ VALUES ("Abed", "Nadir", 2, null),
     ("Troy", "Barnes", 3, 3),
     ("Annie", "Edison", 6, null),
     ("Pierce", "Hawthorne", 5, null),
-    ("Shirley", "Bennett", 7, null),
+    ("Shirley", "Bennett", 7, 6),
     ("Ben", "Chang", 8, null);

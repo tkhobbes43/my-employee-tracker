@@ -111,7 +111,7 @@ const promptUser = () => {
     });
 }
 
-viewDepartments() => {
+viewDepartments = () => {
     const sqlStr = `
     SELECT *
     FROM department`
@@ -123,11 +123,11 @@ viewDepartments() => {
         console.table(data)
         console.log('\n')
 
-        promptUser()
+        promptUser();
     })
-}
+};
 
-viewRoles() => {
+viewRoles = () => {
     const sqlStr = `
     SELECT *
     FROM role`
@@ -141,8 +141,25 @@ viewRoles() => {
 
         promptUser()
     })
-}
+};
 
-viewAllEmployees() => {
-    
+viewAllEmployees = () => {
+    const sqlStr = `
+    SELECT *
+    FROM employee`
+
+    connection.query(sqlStr, (err, data) => {
+        if(err) throw err;
+
+        console.log('\n')
+        console.table(data)
+        console.log('\n')
+
+        promptUser()
+    })
+};
+
+// 
+addRole = () => {
+
 }
