@@ -179,7 +179,7 @@ addRole = () => {
         SELECT role.title, role.salary, department.department`
         query += `FROM role INNER JOIN department ON (role.deparment_id = deparment.id);`
 
-        connection.query(query, (err, data) {
+        connection.query(query, (err, data) => {
             if(err) throw err;
             
             console.log('\n')
@@ -204,13 +204,24 @@ addRole = () => {
                     name: "newDeparment"
                 }
             ])
-            .then(answers) => {
+            .then = (answers) => {
                 const {choices } = answers
                 let addDepartment = choices.newDepartment;
                 let addDeparmentId = departmentArray.indexOf(addDepartment);
                 addDeparmentId++;
                 console.log("Adding New Role...\n");
-                connection.query(``)
+                connection.query('INSERT INTO role SET ?',
+                    {
+                        title: choices.newRole,
+                        salary: choices.newSalary,
+                        department_id: addDeparmentId
+                    },
+                    function (err, data) {
+                        if (err) throw err;
+                        console.log(data.affectedRows + " Role Created Successfully\n");
+                        promptUser();
+                }
+                )
             }
         })
     })
