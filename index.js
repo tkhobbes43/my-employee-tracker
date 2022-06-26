@@ -164,5 +164,54 @@ viewAllEmployees = () => {
 
 // 
 addRole = () => {
+    // first need connection query to database as well as an empty array that we will use for user choose which deparment the new role will belong to
+    let departmentArray = [];
+    let sqlStr = `
+    SELECT *
+    FROM departments`
+    
+    connection.query(sqlStr, (err, data) => {
+        if(err) throw err;
+        for (i = 0; i < data.length; i++) {
+            departmentArray.push(data[i].department)
+        }
+        let query = `
+        SELECT role.title, role.salary, department.department`
+        query += `FROM role INNER JOIN department ON (role.deparment_id = deparment.id);`
 
+        connection.query(query, (err, data) {
+            if(err) throw err;
+            
+            console.log('\n')
+            console.table(data)
+            console.log('\n')
+
+            inquirer.prompt ([
+                {
+                    type: 'input',
+                    message: 'What is the name of the role you want to add?',
+                    name: 'newRole'
+                },
+                {
+                    type: 'input',
+                    message: 'How much is the salary for this role?',
+                    name: 'newSalary'
+                },
+                {
+                    type: 'list',
+                    message: 'What deparment does will this role belong to?',
+                    choices: departmentArray,
+                    name: "newDeparment"
+                }
+            ])
+            .then(answers) => {
+                const {choices } = answers
+                let addDepartment = choices.newDepartment;
+                let addDeparmentId = departmentArray.indexOf(addDepartment);
+                addDeparmentId++;
+                console.log("Adding New Role...\n");
+                connection.query(``)
+            }
+        })
+    })
 }
