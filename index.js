@@ -166,9 +166,31 @@ viewAllEmployees = () => {
 };
 
 addDepartment = () => {
+    let questions = [
+        {
+            type: "input",
+            name: "name",
+            message: "What is the name of the new department you want to add?"
+        }
+    ];
+    
+    let sqlStr = `
+    INSERT INTO department (name) VALUES (?)`;
 
+    inquirer.prompt(questions)
+    .then(res => { 
+        connection.query(sqlStr, [res.name], (err, res) => {
+        if (err) throw err;
+        console.log(`Successfully inserted ${res.name} department at ${res.insertId}`);
+        promptUser();
+        });
+    })
+    
+    .catch(err => {
+        console.error(err);
+    });
 }
-// 
+
 addRole = () => {
     // first need connection query to database as well as an empty array that we will use for user choose which deparment the new role will belong to
     let departmentArray = [];
@@ -192,30 +214,31 @@ addRole = () => {
             {
                 type: "input",
                 name: "title",
-                message: "what is the title of the new role?"
+                message: "What is the title of the new role?"
             },
             {
                 type: "input",
                 name: "salary",
-                message: "what is the salary of the new role?"
+                message: "What is the salary of the new role?"
             },
             {
                 type: "list",
                 name: "department",
                 choices: departmentArray,
-                message: "which department is this role in?"
+                message: "Which department is this role in?"
             }
         ];
     
         inquirer.prompt(questions)
-        .then(response => {
-            const query = `INSERT INTO ROLE (title, salary, department_id) VALUES (?)`;
-            connection.query(query, [[response.title, response.salary, response.department]], (err, res) => {
+        .then(res => {
+            const sqlStr = `INSERT INTO ROLE (title, salary, department_id) VALUES (?)`;
+            connection.query(sqlStr, [[res.title, res.salary, res.department]], (err, res) => {
             if (err) throw err;
-            console.log(`Successfully inserted ${response.title} role at id ${res.insertId}`);
+            console.log(`Successfully inserted ${res.title} role at id ${res.insertId}`);
             promptUser();
             });
         })
+        
         .catch(err => {
             console.error(err);
         });
