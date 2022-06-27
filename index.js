@@ -68,6 +68,9 @@ const promptUser = () => {
         if (choices === "View all employees") {
             viewAllEmployees();
         }
+        if (choices === "Add a department") {
+            addDepartment();
+        }
         if (choices === "Add a role") {
             addRole();
         }
@@ -161,6 +164,7 @@ viewAllEmployees = () => {
         promptUser()
     })
 };
+
 
 // 
 addRole = () => {
