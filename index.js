@@ -168,61 +168,51 @@ addRole = () => {
     let departmentArray = [];
     let sqlStr = `
     SELECT *
-    FROM departments`
+    FROM department`
     
-    connection.query(sqlStr, (err, data) => {
-        if(err) throw err;
-        for (i = 0; i < data.length; i++) {
-            departmentArray.push(data[i].department)
-        }
-        let query = `
-        SELECT role.title, role.salary, department.department`
-        query += `FROM role INNER JOIN department ON (role.deparment_id = deparment.id);`
-
-        connection.query(query, (err, data) => {
-            if(err) throw err;
-            
-            console.log('\n')
-            console.table(data)
-            console.log('\n')
-
-            inquirer.prompt ([
-                {
-                    type: 'input',
-                    message: 'What is the name of the role you want to add?',
-                    name: 'newRole'
-                },
-                {
-                    type: 'input',
-                    message: 'How much is the salary for this role?',
-                    name: 'newSalary'
-                },
-                {
-                    type: 'list',
-                    message: 'What deparment does will this role belong to?',
-                    choices: departmentArray,
-                    name: "newDeparment"
-                }
-            ])
-            .then = (answers) => {
-                const {choices } = answers
-                let addDepartment = choices.newDepartment;
-                let addDeparmentId = departmentArray.indexOf(addDepartment);
-                addDeparmentId++;
-                console.log("Adding New Role...\n");
-                connection.query('INSERT INTO role SET ?',
-                    {
-                        title: choices.newRole,
-                        salary: choices.newSalary,
-                        department_id: addDeparmentId
-                    },
-                    function (err, data) {
-                        if (err) throw err;
-                        console.log(data.affectedRows + " Role Created Successfully\n");
-                        promptUser();
-                }
-                )
+    connection.query(sqlStr, (err, res) => {
+        if (err) throw err;
+    
+        res.forEach(dep => {
+            let qObj = {
+            name: dep.name,
+            value: dep.id
             }
+            departmentArray.push(qObj);
+        });
+    
+        //question list to get arguments for making new roles
+        let questions = [
+            {
+                type: "input",
+                name: "title",
+                message: "what is the title of the new role?"
+            },
+            {
+                type: "input",
+                name: "salary",
+                message: "what is the salary of the new role?"
+            },
+            {
+                type: "list",
+                name: "department",
+                choices: departments,
+                message: "which department is this role in?"
+            }
+        ];
+    
+        inquier.prompt(questions)
+        .then(response => {
+            const query = `INSERT INTO ROLE (title, salary, department_id) VALUES (?)`;
+            connection.query(query, [[response.title, response.salary, response.department]], (err, res) => {
+            if (err) throw err;
+            console.log(`Successfully inserted ${response.title} role at id ${res.insertId}`);
+            startPrompt();
+            });
         })
-    })
+        .catch(err => {
+            console.error(err);
+        });
+    });
 }
+
