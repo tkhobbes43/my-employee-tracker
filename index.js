@@ -165,7 +165,9 @@ viewAllEmployees = () => {
     })
 };
 
+addDepartment = () => {
 
+}
 // 
 addRole = () => {
     // first need connection query to database as well as an empty array that we will use for user choose which deparment the new role will belong to
