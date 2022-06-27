@@ -196,18 +196,18 @@ addRole = () => {
             {
                 type: "list",
                 name: "department",
-                choices: departments,
+                choices: departmentArray,
                 message: "which department is this role in?"
             }
         ];
     
-        inquier.prompt(questions)
+        inquirer.prompt(questions)
         .then(response => {
             const query = `INSERT INTO ROLE (title, salary, department_id) VALUES (?)`;
             connection.query(query, [[response.title, response.salary, response.department]], (err, res) => {
             if (err) throw err;
             console.log(`Successfully inserted ${response.title} role at id ${res.insertId}`);
-            startPrompt();
+            promptUser();
             });
         })
         .catch(err => {
@@ -215,4 +215,3 @@ addRole = () => {
         });
     });
 }
-
