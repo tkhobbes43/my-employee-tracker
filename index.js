@@ -43,14 +43,10 @@ const promptUser = () => {
                     'Add a department',
                     'Add a role',
                     'Add an employee',
-                    'Update an employee',
-                    'Update employee managers',
-                    'View employees by manager',
-                    'View employees by department',
+                    "Update an employee's role",
                     'Delete a department',
                     'Delete a role',
                     'Delete an employee',
-                    'View the total utilized budget of a department',
                     'No Action',
                 ]
         }
@@ -77,17 +73,8 @@ const promptUser = () => {
         if (choices === "Add an employee") {
             addEmployee();
         }
-        if (choices === "Update an employee") {
-            updateEmployee();
-        }
-        if (choices === "Update employee managers") {
-            updateManager();
-        }
-        if (choices === "View employees by manager") {
-            employeeManager();
-        }
-        if (choices === "View employees by department") {
-            employeeDepartment();
+        if (choices === "Update an employee's role") {
+            updateEmployeeRole();
         }
         if (choices === "Delete a department") {
             deleteDepartment();
@@ -98,9 +85,6 @@ const promptUser = () => {
         if (choices === "Delete an employee") {
             deleteEmployee();
         }   
-        if (choices === "View the total utilized budget of a department") {
-            totalDepartmentBudget();
-        }
         if (choices === "No Action") {
             connection.end()
         };
@@ -249,19 +233,7 @@ addEmployee = () => {
 
 }
 
-updateEmployee = () => {
-
-}
-
-updateManager = () => {
-
-}
-
-employeeManager = () => {
-
-}
-
-employeeDepartment = () => {
+updateEmployeeRole = () => {
 
 }
 
@@ -274,9 +246,5 @@ deleteRole = () => {
 }
 
 deleteEmployee = () => {
-
-}
-
-totalDepartmentBudget = () => {
 
 }
