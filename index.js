@@ -244,3 +244,39 @@ addRole = () => {
         });
     });
 }
+
+addEmployee = () => {
+
+}
+
+updateEmployee = () => {
+
+}
+
+updateManager = () => {
+
+}
+
+employeeManager = () => {
+
+}
+
+employeeDepartment = () => {
+
+}
+
+deleteDepartment = () => {
+
+}
+
+deleteRole = () => {
+
+}
+
+deleteEmployee = () => {
+
+}
+
+totalDepartmentBudget = () => {
+
+}
