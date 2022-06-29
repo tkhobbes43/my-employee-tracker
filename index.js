@@ -44,9 +44,6 @@ const promptUser = () => {
                     'Add a role',
                     'Add an employee',
                     "Update an employee's role",
-                    'Delete a department',
-                    'Delete a role',
-                    'Delete an employee',
                     'No Action',
                 ]
         }
