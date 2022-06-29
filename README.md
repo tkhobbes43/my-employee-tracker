@@ -46,11 +46,10 @@ This will require Node.js as well as npm packages Inquirer, MySQL2, and console.
 
 ## Usage
 Use inquirer from the command line to view or add to the database.  Please see the below video walkthrough.
-[Walkthrough Video]()
+[Walkthrough Video](https://drive.google.com/file/d/1Y9FJOV52GHKGlzuCr_zlP8mF9kvvWakj/view)
 
-![Screenshot of command line using the app]()
+![Screenshot of command line using the app](/assets/Capture.PNG)
 
 ## Questions
 For any questions or concerns, contact me at either my [GitHub](https://github.com/tkhobbes43)
 or my email: t.k.hobbes43@gmail.com
-
