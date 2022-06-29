@@ -221,7 +221,39 @@ addRole = () => {
 }
 
 addEmployee = () => {
+    let roleArray = []
+    let sqlStr = `SELECT * FROM role`
 
+    connection.query(sqlStr, (err, res) => {
+        if (err) throw err;
+
+        res.forEach(emp => {
+            let qObj = {
+                name: emp.name,
+                value: emp.id
+            }
+            roleArray.push(qObj);
+        });
+
+        let questions = [
+            {
+                type: "input",
+                name: "first_name",
+                message: "What is the new employee's first name?"
+            },
+            {
+                type: "input",
+                name: "last_name",
+                message: "What is the new employee's last name?"
+            },
+            {
+                type: "list",
+                name: "role_id",
+            
+            }
+
+        ]
+    })
 }
 
 updateEmployeeRole = () => {
