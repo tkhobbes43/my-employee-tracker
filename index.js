@@ -75,16 +75,7 @@ const promptUser = () => {
         }
         if (choices === "Update an employee's role") {
             updateEmployeeRole();
-        }
-        if (choices === "Delete a department") {
-            deleteDepartment();
-        }
-        if (choices === "Delete a role") {
-            deleteRole();
-        }
-        if (choices === "Delete an employee") {
-            deleteEmployee();
-        }   
+        }  
         if (choices === "No Action") {
             connection.end()
         };
@@ -234,17 +225,5 @@ addEmployee = () => {
 }
 
 updateEmployeeRole = () => {
-
-}
-
-deleteDepartment = () => {
-
-}
-
-deleteRole = () => {
-
-}
-
-deleteEmployee = () => {
 
 }
